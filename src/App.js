@@ -3,7 +3,10 @@ import {
   AppBar, Toolbar, Typography, Container,
   TextField, Button, Card, CardContent, Grid, Box, Paper
 } from '@mui/material';
-
+import LocationOnIcon from '@mui/icons-material/LocationOn';
+import ThermostatIcon from '@mui/icons-material/Thermostat';
+import OpacityIcon from '@mui/icons-material/Opacity';
+import AirIcon from '@mui/icons-material/Air';
 
 function App() {
   const [city, setCity] = useState("");
@@ -17,6 +20,10 @@ function App() {
         console.log(result);
         setWeather(result);
       });
+  };
+
+  const getValue = (value) => {
+    return value !== undefined ? value : "undefined";
   };
 
   return (
@@ -52,49 +59,49 @@ function App() {
               <Card>
                 <CardContent>
                   <Typography variant="h5" gutterBottom>
-                {weather.name}
+                    <LocationOnIcon /> {getValue(weather.name)}
                   </Typography>
                   <Grid container spacing={2}>
                     <Grid item xs={12} sm={6}>
                       <Typography variant="body1">
-                        Latitude: {weather.coord.lat}°
+                        Latitude: {getValue(weather.coord?.lat)}°
                       </Typography>
                       <Typography variant="body1">
-                        Longitude: {weather.coord.lon}°
+                        Longitude: {getValue(weather.coord?.lon)}°
                       </Typography>
                       <Typography variant="body1">
-                     Humidity: {weather.main.humidity}%
+                        <OpacityIcon /> Humidity: {getValue(weather.main?.humidity)}%
                       </Typography>
                       <Typography variant="body1">
-                        Pressure: {weather.main.pressure} hPa
+                        Pressure: {getValue(weather.main?.pressure)} hPa
                       </Typography>
                     </Grid>
                     <Grid item xs={12} sm={6}>
                       <Typography variant="body1">
-                         Temperature: {weather.main.temp}°F
+                        <ThermostatIcon /> Temperature: {getValue(weather.main?.temp)}°F
                       </Typography>
                       <Typography variant="body1">
-                        Max Temp: {weather.main.temp_max}°F
+                        Max Temp: {getValue(weather.main?.temp_max)}°F
                       </Typography>
                       <Typography variant="body1">
-                        Min Temp: {weather.main.temp_min}°F
+                        Min Temp: {getValue(weather.main?.temp_min)}°F
                       </Typography>
                       <Typography variant="body1">
-                        Feels like: {weather.main.feels_like}°F
+                        Feels like: {getValue(weather.main?.feels_like)}°F
                       </Typography>
                     </Grid>
                     <Grid item xs={12}>
                       <Typography variant="body1">
-                         Wind direction: {weather.wind.deg}°
+                        <AirIcon /> Wind direction: {getValue(weather.wind?.deg)}°
                       </Typography>
                       <Typography variant="body1">
-                        Wind speed: {weather.wind.speed} m/s
+                        Wind speed: {getValue(weather.wind?.speed)} m/s
                       </Typography>
                       <Typography variant="body1">
-                        Weather: {weather.weather[0].main}
+                        Weather: {getValue(weather.weather?.[0]?.main)}
                       </Typography>
                       <Typography variant="body1">
-                        Description: {weather.weather[0].description}
+                        Description: {getValue(weather.weather?.[0]?.description)}
                       </Typography>
                     </Grid>
                   </Grid>
